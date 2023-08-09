@@ -9,6 +9,15 @@ Dependencies.ConfigureServices(builder.Configuration, builder.Services);
 builder.Services.AddScoped(typeof(IAlunoService), typeof(AlunoService));
 builder.Services.AddScoped(typeof(IAulaService), typeof(AulaService));
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        policy =>
+        {
+            policy.AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed(origin => true).AllowCredentials();
+        });
+});
+
 builder.Services.AddControllers(options =>
 {
     options.Filters.Add<FilterException>();
@@ -19,6 +28,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
 
 var app = builder.Build();
 
