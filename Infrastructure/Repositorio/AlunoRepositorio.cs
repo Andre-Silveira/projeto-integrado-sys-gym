@@ -26,7 +26,8 @@ public class AlunoRepositorio : IAlunoRepositorio
                             .Set(x => x.CPF, aluno.CPF)
                             .Set(x => x.Endereco, aluno.Endereco)
                             .Set(x => x.Aula, aluno.Aula)
-                            .Set(x => x.DataNascimento, aluno.DataNascimento);
+                            .Set(x => x.DataNascimento, aluno.DataNascimento)
+                            .Set(x => x.Ativo, aluno.Ativo);
         _alunoCollection.UpdateOne(filtro, update);
 
     }
@@ -64,7 +65,8 @@ public class AlunoRepositorio : IAlunoRepositorio
             CPF = aluno.CPF,
             Endereco = aluno.Endereco,
             Aula = aluno.Aula,
-            DataNascimento = aluno.DataNascimento
+            DataNascimento = aluno.DataNascimento,
+            Ativo = aluno.Ativo
         }).ToList();
     }
 
@@ -80,7 +82,7 @@ public class AlunoRepositorio : IAlunoRepositorio
             Endereco = aluno.Endereco,
             Aula = aluno.Aula,
             DataNascimento = aluno.DataNascimento,
-
+            Ativo = aluno.Ativo
         });
     }
 
