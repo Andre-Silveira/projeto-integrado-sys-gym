@@ -97,7 +97,7 @@ public class AlunoRepositorio : IAlunoRepositorio
     public void BloquearAluno(string id)
     {
         var filtro = Builders<Alunos>.Filter.Eq(x => x.Id, ObjectId.Parse(id));
-        var update = Builders<Alunos>.Update.Set(x => x.Ativo, true);
+        var update = Builders<Alunos>.Update.Set(x => x.Ativo, false);
                            
         _alunoCollection.UpdateOne(filtro, update);
     }
@@ -105,7 +105,7 @@ public class AlunoRepositorio : IAlunoRepositorio
     public void DesbloquearAluno(string id)
     {
         var filtro = Builders<Alunos>.Filter.Eq(x => x.Id, ObjectId.Parse(id));
-        var update = Builders<Alunos>.Update.Set(x => x.Ativo, false);
+        var update = Builders<Alunos>.Update.Set(x => x.Ativo, true);
                            
         _alunoCollection.UpdateOne(filtro, update);
     }
