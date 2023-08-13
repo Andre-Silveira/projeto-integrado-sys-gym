@@ -15,6 +15,15 @@ public class AlunoService : IAlunoService
 
     public void AtualizarAluno(Aluno aluno)
     {
+        if (!CpfValido(aluno.CPF))
+            throw new ArgumentException("CPF inválido!");
+
+        if (!EmailValido(aluno.Email))
+            throw new ArgumentException("E-mail inválido!");
+
+        if (!TelefoneValido(aluno.Telefone))
+            throw new ArgumentException("Telefone inválido!");
+
         _alunoRepositorio.AtualizarAluno(aluno);
     }
 
@@ -35,6 +44,9 @@ public class AlunoService : IAlunoService
 
         if (!EmailValido(aluno.Email))
             throw new ArgumentException("E-mail inválido!");
+
+        if (!TelefoneValido(aluno.Telefone))
+            throw new ArgumentException("Telefone inválido!");
 
         _alunoRepositorio.CadastrarAluno(aluno);
     }
@@ -106,5 +118,15 @@ public class AlunoService : IAlunoService
         {
             return false;
         }
+    }
+
+    public bool TelefoneValido(string telefone)
+    {
+        string numero = Regex.Replace(telefone, @"\D", "");
+
+        if (numero.Length != 11)
+            return false;
+
+        return true;
     }
 }
